@@ -1,0 +1,105 @@
+---
+title: "lazarte_CS101"
+author: "Ryan Rainzor A. Lazarte"
+date: "2026-09-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Part A-Arithmetic Operations
+
+```{r}
+a<-17
+b<-5
+a+b
+a-b
+a*b
+a/b
+```
+```{r}
+a%%b
+a%/%b
+```
+```{r}
+2^10
+```
+## Question #1: Run 17 / 5, 17 %% 5, and 17 %/% 5 side by side. In your own words, explain how these three results relate to each other mathematically.
+```{r}
+17/5
+17%%5
+17%/%5
+```
+## these three problems relate to the operator despite the output differences. By using the modulo(%) and division (/), we can easily identify the output.
+
+## Question #2: Predict the output of 10 %% 3 and 10 %/% 3 before running the code. Were you correct? If not, explain what you misunderstood.
+```{r}
+10%%3
+10%/%3
+```
+## yes, before I input my value i have predicted the output.
+
+##Part B-Basic Data Types
+```{r}
+x <- 42
+y <- 42L        # the L suffix forces an integer
+z <- "42"
+w <- TRUE
+v <- 3 + 2i
+
+typeof(x)
+typeof(y)
+typeof(z)
+typeof(w)
+typeof(v)
+```
+```{r}
+class(x)
+class(y)
+class(z)
+class(w)
+class(v)
+```
+```{r}
+mode(x)
+mode(y)
+mode(z)
+mode(w)
+mode(v)
+```
+## Question #3): x <- 42 and y <- 42L look almost identical, but typeof(x) and typeof(y) give different answers. Explain the difference in your own words.
+```{r}
+x <-42
+y <-42L
+
+typeof(x)
+typeof(y)
+```
+## Because x is double and y is integer because x and y is simillar but y has a L at the end.
+
+##Question #4: Is typeof() ever different from class() and from mode() for the same object? Look at your results above and explain any case where this happens (or, if you did not see one, explain what you would expect for a matrix or factor).
+## We don't need to solve this, if we base on the activity part b in has a changes eventhough the the numeric is the same.
+
+## Part C-Type Conversion (20 min)
+```{r}
+num_string <- "123"
+
+as.numeric(num_string)
+typeof(num_string)
+class(num_string)
+mode(num_string)
+```
+```{r}
+as.logical(0)
+as.logical(1)
+```
+```{r}
+bad_string <- "hello123"
+
+as.numeric(bad_string)
+
+```
+## for me I think it is to warn the user that this output is not possible, and needs revision. Unlike any other languages that stops when it crashes.
+
