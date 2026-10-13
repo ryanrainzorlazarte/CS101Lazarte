@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##Part A-Arithmetic Operations
+## Part A-Arithmetic Operations
 
 ```{r}
 a<-17
@@ -26,22 +26,22 @@ a%/%b
 ```{r}
 2^10
 ```
-## Question #1: Run 17 / 5, 17 %% 5, and 17 %/% 5 side by side. In your own words, explain how these three results relate to each other mathematically.
+##Question #1: Run 17 / 5, 17 %% 5, and 17 %/% 5 side by side. In your own words, explain how these three results relate to each other mathematically.
 ```{r}
 17/5
 17%%5
 17%/%5
 ```
-## these three problems relate to the operator despite the output differences. By using the modulo(%) and division (/), we can easily identify the output.
+##these three problems relate to the operator despite the output differences. By using the modulo(%) and division (/), we can easily identify the output.
 
-## Question #2: Predict the output of 10 %% 3 and 10 %/% 3 before running the code. Were you correct? If not, explain what you misunderstood.
+##Question #2: Predict the output of 10 %% 3 and 10 %/% 3 before running the code. Were you correct? If not, explain what you misunderstood.
 ```{r}
 10%%3
 10%/%3
 ```
-## yes, before I input my value i have predicted the output.
+##yes, before I input my value i have predicted the output.
 
-##Part B-Basic Data Types
+## Part B-Basic Data Types
 ```{r}
 x <- 42
 y <- 42L        # the L suffix forces an integer
@@ -69,7 +69,7 @@ mode(z)
 mode(w)
 mode(v)
 ```
-## Question #3): x <- 42 and y <- 42L look almost identical, but typeof(x) and typeof(y) give different answers. Explain the difference in your own words.
+##Question #3: x <- 42 and y <- 42L look almost identical, but typeof(x) and typeof(y) give different answers. Explain the difference in your own words.
 ```{r}
 x <-42
 y <-42L
@@ -77,10 +77,10 @@ y <-42L
 typeof(x)
 typeof(y)
 ```
-## Because x is double and y is integer because x and y is simillar but y has a L at the end.
+##Because x is double and y is integer because x and y is simillar but y has a L at the end.
 
 ##Question #4: Is typeof() ever different from class() and from mode() for the same object? Look at your results above and explain any case where this happens (or, if you did not see one, explain what you would expect for a matrix or factor).
-## We don't need to solve this, if we base on the activity part b in has a changes eventhough the the numeric is the same.
+##We don't need to solve this, if we base on the activity part b in has a changes eventhough the the numeric is the same.
 
 ## Part C-Type Conversion (20 min)
 ```{r}
@@ -99,7 +99,51 @@ as.logical(1)
 bad_string <- "hello123"
 
 as.numeric(bad_string)
+typeof(bad_string)
+class(bad_string)
+mode(bad_string)
 
 ```
-## for me I think it is to warn the user that this output is not possible, and needs revision. Unlike any other languages that stops when it crashes.
+##Question #5: for me I think it is to warn the user that this output is not possible, and needs revision. Unlike any other languages that stops when it crashes.
 
+##Bad data will result to gives you wrong result.
+
+##Question #6: as.logical(2) and as.logical(-1) will result to output TRUE
+
+##In the Rule R 0=False and Any number aside form 0 is all true.
+
+## Part D - Strings, paste(), and pastet0()
+
+```{r}
+first_name <-"Juan"
+last_name <-"Dela Cruz"
+
+print(first_name)
+print(last_name)
+cat(first_name, last_name)
+```
+```{r}
+full_name <-paste(first_name,last_name)
+full_name
+paste0(first_name,last_name)
+```
+```{r}
+paste(first_name,last_name, sep = "-")
+```
+```{r}
+age <- 21
+paste0(full_name, " is ", age , " years old")
+```
+##Question#7: based on my observation paste0 cconnects both Juan and Dela Cruz.While paste will just put a space between two arguaments.
+##Question#8: No, it did not cause an erro because paste0 automatically converts any argument into a character string before joining them.
+```{r}
+##"5" + 5 
+```
+```{r}
+as.numeric("5") + 5
+```
+##Question #9 R are quite strict when it comes to data type because each type has its own meaning and behavior.
+
+##Question #10 I think the column is mostly read in as character type, eventhough it looks numeric on the outside. Commas spaces, dollar sign and other types of symbols does R can't treat it as numbers.
+
+##I have learned the fundamentals of R, this language is quite intrigued to me. It is easy but quite strict to the rules and data types but it is always managable because it helps me learn something new.Understanding typof(),class(), and modes made it easier for us students to convert some problems out of math. Lastly, warnings are needed to watch out as the result at the end will make the code wrongfully convert if not be able to fix sooner.
