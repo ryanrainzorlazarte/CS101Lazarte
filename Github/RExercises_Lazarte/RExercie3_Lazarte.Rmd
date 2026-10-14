@@ -1,0 +1,64 @@
+---
+title: "lazarte_CS101"
+author: "Ryan Rainzor A. Lazarte"
+date: "2026-10-14"
+output: html_document
+---
+
+```{r}{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Part A-Creating Vectors: c(), seq(), rep()
+```{r}
+scores <- c(88, 92, 79, 95, 84)
+subjects <- c("Math", "Science", "English", "History", "PE")
+```
+```{r}
+seq(1,19,by=2)
+```
+```{r}
+seq(0,1, length=5)
+```
+```{r}
+rep("A",4)
+rep(c("A","B"), each = 2)
+rep(c("A","B"),2)
+```
+##Question #1:Set up a vector named age, consisting of 15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8.
+
+Answer:
+
+a.
+
+```{r}
+age <- c(15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8)
+length(age)
+```
+
+b.
+```{r}
+1/age
+```
+
+c.
+```{r}
+new_age <- c(age, 0, age)
+```
+##new_age is a vector of length 69: the 34 ages, then a 0, then the same 34 ages again.
+
+d.
+```{r}
+min(age)
+max(age)
+```
+##Question #2:
+##rep(c("A","B"), each = 2) and rep(c("A","B"), times = 2) both produce a vector of length 4, but with different element orders.
+##Explain in your own words the difference between each and times.
+```{r}
+rep(c("A","B"), each = 2)
+rep(c("A","B"), times = 2)
+```
+## answer
+
+## In my own understanding each function repeat each element in how many times, while the times function 
