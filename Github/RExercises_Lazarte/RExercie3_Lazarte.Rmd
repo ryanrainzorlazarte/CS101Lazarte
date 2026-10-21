@@ -59,6 +59,66 @@ max(age)
 rep(c("A","B"), each = 2)
 rep(c("A","B"), times = 2)
 ```
-## answer
+##answer
 
-## In my own understanding each function repeat each element in how many times, while the times function 
+##In my own understanding each function repeat each element in how many times, while the times function 
+
+##Question #3:
+```{r}
+seq(1, 20, by =2)
+seq(1, 20, length.out = 5)
+```
+##base on the terminal output, the difference between by to the length.out is that by add the sequence and the length.out give a cappacity to the vector.
+
+##Question #4:
+##a. 
+```{r}
+vec_num <- seq(20,60)
+```
+##b. 
+```{r}
+mean(vec_num)
+```
+##c.
+```{r}
+sum(vec_num)
+```
+##d.
+```{r}
+length(vec_num)
+```
+## Part B -- Subsetting (Accessing) Vectors
+```{r}
+grades <- c(88, 92, 79, 95, 84)
+names(grades) <- c("Math", "Science", "English", "History", "PE")
+grades[3]
+grades[c(1,4)]
+grades[c("Science","PE")]
+```
+```{r}
+grades[-c(1,4) ]
+```
+```{r}
+grades[grades >= 85]
+```
+##Question 5
+## When it comes to real situation where we would need negative indexing is the time we need to eliminate unnecessary data less than the data that we needed. While when it comes to logical indexing is where we need to list just specific requirements that has the condition.
+
+##Question 6
+```{r}
+grades[10]
+```
+##Because there is no data in arrangement 10. The capacity of the grade variable holds is only 5 and if I guess why it does not throw an error because the structure of the code itself is acceptable and only the index 10 has no value
+##Question #7:
+```{r}
+Filter(function(i) { all(i %% c(3,5,7) != 0) }, seq(100))
+```
+
+```{r}
+x <- c(1, 2, 3, 4)
+y <- c(10, 20, 30, 40)
+result <- x+y
+result
+x*2
+```
+
