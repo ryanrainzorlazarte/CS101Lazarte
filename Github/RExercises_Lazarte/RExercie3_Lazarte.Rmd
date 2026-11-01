@@ -113,7 +113,7 @@ grades[10]
 ```{r}
 Filter(function(i) { all(i %% c(3,5,7) != 0) }, seq(100))
 ```
-
+## Part C -- Vector Operations and append()
 ```{r}
 x <- c(1, 2, 3, 4)
 y <- c(10, 20, 30, 40)
@@ -121,4 +121,58 @@ result <- x+y
 result
 x*2
 ```
+```{r}
+z <- c(1, 2, 3, 4, 5, 6)
+short <- c(1,0)
+z + short
+```
+```{r}
+fruits <- c("apple", "banana", "cherry")
+append(fruits, "date")
+append(fruits, "kiwi", after = 1)
+```
+##Question 8
+##When z is added to short, R doesn't throw an error. It repeats the code over and over until it matches the length of z.
+##Question 9
+##It works for my terminal, with no warning. 6 is multiple of three and I guess it works twice.
+##for the length 4, I observe it still gives a result but it has a warning. Only a part recycles to the end.
+## Part D -- Lists: Creating and Subsetting
+```{r}
+student <- list(name = "Maria Santos", age = 20, grades = c(88, 92, 79), is_enrolled = TRUE)
+```
 
+```{r}
+student["grades"]
+class(student["grades"])
+```
+```{r}
+student$name
+```
+```{r}
+student[["grades"]][2]
+student$grades[2]
+```
+##Question #10
+##student["grades"] will write the entire elements on that length. while the [["grades"]] will only select a specific element.
+##Question #11
+##A vector can only hold a one type, so every element is the samekind of thing and the brackets is enough to pick them out.
+## Part E--Critical Thinking Challenge
+```{r}
+inventory <- list(item = c("Notebook", "Pen", "Eraser"), price = c(24.50, 10.00, 5.00), in_stock = c(TRUE, TRUE, FALSE))
+print(inventory$item [inventory$in_stock==TRUE])
+```
+```{r}
+inventory$item <- append(inventory$item, "Ruler")
+inventory$price <- append(inventory$price, 15.00)
+inventory$in_stock <- append(inventory$in_stock, TRUE)
+```
+##Question #12
+
+##"inventory$in_stock" extracts the logical vector c(TRUE, TRUE, FALSE). While the "inventory$item" extracts the character vector c("Notebook","Pen","Eraser").Both vectors have the same length and the "[]" with the logical vector keeps the elements where the value is TRUE.
+
+##Question #13
+
+##It will be risky because nothing in R links them. They only match is easy to break as the dataset grows or gets reordered. It can cause misalignment.
+
+## Conclusion
+##Vectors hold many values of a single type, ehile it lists can holf elements of different types and lengths, including other vectors and lists. Vectors use [] for indexing, while lists use [] to get smaller list and [[]] or $ is to extract the element itself.
