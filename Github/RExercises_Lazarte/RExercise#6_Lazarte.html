@@ -357,7 +357,193 @@ display: none;
 </div>
 
 
-
+<div id="part-a---creating-data-frames" class="section level2">
+<h2>Part A - Creating Data Frames</h2>
+<pre class="r"><code>name   &lt;- c(&quot;Ana&quot;, &quot;Ben&quot;, &quot;Cid&quot;, &quot;Dex&quot;, &quot;Eli&quot;)
+age    &lt;- c(20, 21, 19, 22, 20)
+passed &lt;- c(TRUE, TRUE, FALSE, TRUE, FALSE)</code></pre>
+<pre class="r"><code>students &lt;- data.frame(name = name, age = age, passed = passed)
+print(students)</code></pre>
+<pre><code>##   name age passed
+## 1  Ana  20   TRUE
+## 2  Ben  21   TRUE
+## 3  Cid  19  FALSE
+## 4  Dex  22   TRUE
+## 5  Eli  20  FALSE</code></pre>
+<pre class="r"><code>typeof(students$name) </code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>class(students$name)   </code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>courses &lt;- data.frame(
+  course_code = c(&quot;IS101&quot;, &quot;IS102&quot;, &quot;IS103&quot;),
+  units       = c(3, 3, 2),
+  instructor  = c(&quot;Dr. P. Reyes&quot;, &quot;Dr. R. Santos&quot;, &quot;Dr. S. Cruz&quot;)
+)</code></pre>
+<p>Question #1</p>
+<p>A data frame is a table, so every row needs one value in every
+column. If one column were shorter, some rows would have missing cells
+and the table would be ragged. data.frame() refuses to build it.</p>
+<p>Question #2</p>
+<p>A list can hold elements of different types, and each element can be
+any object. A data frame is a list where every element is a vector of
+the same length. Each column is its own list element, so one column can
+be character, another numeric, another logical.</p>
+</div>
+<div id="part-b---subsetting-data-frames" class="section level2">
+<h2>Part B - Subsetting Data Frames</h2>
+<pre class="r"><code>students$age</code></pre>
+<pre><code>## [1] 20 21 19 22 20</code></pre>
+<pre class="r"><code>students[[&quot;age&quot;]]</code></pre>
+<pre><code>## [1] 20 21 19 22 20</code></pre>
+<pre class="r"><code>students[&quot;age&quot;]</code></pre>
+<pre><code>##   age
+## 1  20
+## 2  21
+## 3  19
+## 4  22
+## 5  20</code></pre>
+<pre class="r"><code>students[2,]</code></pre>
+<pre><code>##   name age passed
+## 2  Ben  21   TRUE</code></pre>
+<pre class="r"><code>students[3,&quot;name&quot;]</code></pre>
+<pre><code>## [1] &quot;Cid&quot;</code></pre>
+<pre class="r"><code>students[students$passed == TRUE,]</code></pre>
+<pre><code>##   name age passed
+## 1  Ana  20   TRUE
+## 2  Ben  21   TRUE
+## 4  Dex  22   TRUE</code></pre>
+<pre class="r"><code>students[students$passed == TRUE &amp; students$age &gt; 19,]</code></pre>
+<pre><code>##   name age passed
+## 1  Ana  20   TRUE
+## 2  Ben  21   TRUE
+## 4  Dex  22   TRUE</code></pre>
+<p>Question #3</p>
+<pre class="r"><code>class(students[&quot;age&quot;])</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>class(students$age)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Single brackets return smaller list of the same kind, so you get a
+one-column data frame. While, the studentsAge have a double bracket ($)
+also called [[]] pull the element out, so you get the raw vector.</p>
+<p>Question #4</p>
+<p>[[studentsPassed ]]== TRUE gives TRUE TRUE FALSE TRUE FALSE, and
+students$age &gt; 19 gives TRUE TRUE FALSE TRUE TRUE. The &amp; operator
+compares them position by position and returns TRUE only where both are
+TRUE, giving TRUE TRUE FALSE TRUE FALSE. students[ , ] then keeps the
+rows where the combined vector is TRUE. With |, a row is kept if either
+condition is TRUE, so the filter becomes more permissive. Here Eli (age
+20, failed) would be included, giving TRUE TRUE FALSE TRUE TRUE.</p>
+<p>Part C - Data Frame Properties</p>
+<pre class="r"><code>str(students)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    5 obs. of  3 variables:
+##  $ name  : chr  &quot;Ana&quot; &quot;Ben&quot; &quot;Cid&quot; &quot;Dex&quot; ...
+##  $ age   : num  20 21 19 22 20
+##  $ passed: logi  TRUE TRUE FALSE TRUE FALSE</code></pre>
+<pre class="r"><code>dim(students)</code></pre>
+<pre><code>## [1] 5 3</code></pre>
+<pre class="r"><code>nrow(students)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>ncol(students)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>names(students)</code></pre>
+<pre><code>## [1] &quot;name&quot;   &quot;age&quot;    &quot;passed&quot;</code></pre>
+<pre class="r"><code>summary(students)</code></pre>
+<pre><code>##         name        age         passed       
+##  Length   :5   Min.   :19.0   Mode :logical  
+##  N.unique :5   1st Qu.:20.0   FALSE:2        
+##  N.blank  :0   Median :20.0   TRUE :3        
+##  Min.nchar:3   Mean   :20.4                  
+##  Max.nchar:3   3rd Qu.:21.0                  
+##                Max.   :22.0</code></pre>
+<p>Question #5</p>
+<pre class="r"><code>summary(students)</code></pre>
+<pre><code>##         name        age         passed       
+##  Length   :5   Min.   :19.0   Mode :logical  
+##  N.unique :5   1st Qu.:20.0   FALSE:2        
+##  N.blank  :0   Median :20.0   TRUE :3        
+##  Min.nchar:3   Mean   :20.4                  
+##  Max.nchar:3   3rd Qu.:21.0                  
+##                Max.   :22.0</code></pre>
+<p>Upon observation:</p>
+<p>-age (numeric): the five-number summary plus the mean: Min 19, 1st
+Qu. 20, Median 20, Mean 20.4, 3rd Qu. 21, Max 22.</p>
+<p>-passed (logical): a count of each value: FALSE 2, TRUE 3 (plus the
+mode, “logical”).</p>
+<p>-name (character): only the length (5), class, and mode, because
+there is nothing to calculate.</p>
+<p>Question #6:</p>
+<p>str() shows structure: the number of rows and columns, each column’s
+data type, and the first few values. . It’s more useful once you already
+trust the structure and want to understand the values, such as spread,
+typical values, or how many passed.</p>
+</div>
+<div id="part-d---data-frame-operations" class="section level2">
+<h2>Part D - Data Frame Operations</h2>
+<pre class="r"><code>students$year_level &lt;- c(2, 3, 1, 4, 2)</code></pre>
+<pre class="r"><code>students$passed &lt;- NULL</code></pre>
+<pre class="r"><code>students[order(students$age), ]    </code></pre>
+<pre><code>##   name age year_level
+## 3  Cid  19          1
+## 1  Ana  20          2
+## 5  Eli  20          2
+## 2  Ben  21          3
+## 4  Dex  22          4</code></pre>
+<pre class="r"><code>students[order(-students$age), ]    </code></pre>
+<pre><code>##   name age year_level
+## 4  Dex  22          4
+## 2  Ben  21          3
+## 1  Ana  20          2
+## 5  Eli  20          2
+## 3  Cid  19          1</code></pre>
+<p>Question #7</p>
+<p>No, not meaningfully. After the column is removed, students$passed
+returns NULL. NULL == TRUE gives logical(0), so the filter returns an
+empty data frame (0 rows, same columns) rather than the students who
+passed. The filter doesn’t raise an error, which makes the failure easy
+to miss. Because later code depends on earlier changes, you should check
+the current structure (names(), str()) as you go, or your results can be
+silently wrong.</p>
+<p>Question #8</p>
+<p>order(students$age) looks at the ages (20, 21, 19, 22, 20) and
+returns the row positions in the order that would sort them: 3 1 5 2 4.
+Cid (row 3) is youngest, then Ana (row 1), Eli (row 5), Ben (row 2), and
+Dex (row 4). Ties keep their original order, so Ana comes before Eli.
+Writing students[c(3,1,5,2,4), ] puts that vector in the row slot, and
+the empty column slot means “all columns”. R therefore rearranges entire
+rows, and every column moves together.</p>
+</div>
+<div id="part-e---critical-thinkiing-challenge" class="section level2">
+<h2>Part E - Critical Thinkiing Challenge</h2>
+<pre class="r"><code>grades &lt;- data.frame(
+  name = c(&quot;Ana&quot;, &quot;Ben&quot;, &quot;Cid&quot;, &quot;Dex&quot;, &quot;Eli&quot;),
+  midterm = c(85, 78, 92, 88, 70),
+  final = c(90, 82, 95, 84, 75)
+)
+grades$average &lt;- (grades$midterm + grades$final) / 2</code></pre>
+<pre class="r"><code>grades$remarks &lt;- ifelse(grades$average &gt;= 75, &quot;Passed&quot;, &quot;Failed&quot;)</code></pre>
+<p>Question #9</p>
+<p>I would start by creating two new columns. The first is drop, equal
+to final - midterm . The second is a flag for a low midterm, for example
+midterm below 75. Next I would add the remarks column, as above. Then I
+would filter the Failed students and look at their drop values and
+midterms. If most of them have a very negative drop but decent midterms,
+the drop is the likelier cause. If they mostly have low midterms and
+small changes, the low midterm is more likely responsible. I could also
+sort by drop and by midterm with order() and see which ordering puts the
+Failed students at the top. With only five students this is just a
+starting point, not proof.</p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>A data frame is R’s table structure. It is a list of equal-length
+vectors, where each vector is a column and each element of a column
+belongs to one row. Like a vector, each column holds a single data type.
+Like a list, the columns together can hold different types. Because
+real-world data (surveys, grades, records) usually has mixed types in
+rows and columns, data frames are R’s main structure for tabular data.
+They also support subsetting, filtering, adding and removing columns,
+and sorting, which are the core steps of data analysis.</p>
+</div>
 
 
 
