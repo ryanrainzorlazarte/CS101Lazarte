@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Part A - Creating Data Frames
-##Question #1
+Question #1
 ```{r}
 Respondents <- c(1:20)
 Sex <- c(2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,1,2)
@@ -18,7 +18,7 @@ PersonsAtHome <- c(5,7,3,8,5,9,6,7,8,4,7,5,4,7,8,8,3,11,7,6)
 SiblingsAtSchool <- c(6,4,4,1,2,1,5,3,1,2,3,2,5,5,2,1,2,5,3,2)
 TypesOfHouses <- c(1,2,3,1,1,3,3,1,2,3,2,3,2,2,3,3,3,3,3,2)
 ```
-##a.
+a.
 ```{r}
 c(length(Respondents),length(Sex),length(FathersOccupation),length(PersonsAtHome),length(SiblingsAtSchool),length(TypesOfHouses))
 ```
@@ -26,36 +26,36 @@ c(length(Respondents),length(Sex),length(FathersOccupation),length(PersonsAtHome
 survey <- data.frame(Respondents, Sex, FathersOccupation, PersonsAtHome, SiblingsAtSchool, TypesOfHouses)
 survey
 ```
-##a. Describe the data. Get the structure or the summary of the data.
+a. Describe the data. Get the structure or the summary of the data.
 ```{r}
 str(survey)
 summary(survey)
 ```
-##b. Check for the dimensions. How many rows and columns?
+b. Check for the dimensions. How many rows and columns?
 ```{r}
 dim(survey)
 ```
-##d. Get the mean for all columns.
+d. Get the mean for all columns.
 ```{r}
 colMeans(survey)
 ```
-##c. Create factors for Sex, Father's Occupation and Tyeps of Houses
+c. Create factors for Sex, Father's Occupation and Tyeps of Houses
 ```{r}
 survey$Sex <- factor(survey$Sex, levels = c(1,2), labels = c("Male","Female"))
 survey$FathersOccupation <- factor(survey$FathersOccupation, levels = c(1,2,3), labels = c("Farmer", "Driver", "Others"))
 survey$TypesOfHouses <- factor(survey$TypesOfHouses, levels = c(1,2,3), labels = c("Wood", "Semi-Concrete", "Concrete"))
 ```
 
-##e. Extract the 1st five rows and then all the columns using subsetting functions. What is the Output?
+e. Extract the 1st five rows and then all the columns using subsetting functions. What is the Output?
 ```{r}
 survey[1:5, ]
 ```
-##f. Select the variable types of houses then store the vector that results as types_houses.
+f. Select the variable types of houses then store the vector that results as types_houses.
 ```{r}
 types_houses <-survey$TypesOfHouses
 types_houses
 ```
-##g. Select only all Males respondent that their father occupation was farmer.
+g. Select only all Males respondent that their father occupation was farmer.
 ```{r}
 survey_raw <- data.frame(Respondents, Sex, FathersOccupation, PersonsAtHome, SiblingsAtSchool, TypesOfHouses)
 str(survey_raw)
@@ -65,36 +65,39 @@ str(survey_raw)
 survey[survey$Sex == "Male" & survey$FathersOccupation == "Farmer", ]
 
 ```
-##h. Female respondents with 5 or more siblings in school.
+h. Female respondents with 5 or more siblings in school.
 ```{r}
 survey[survey$Sex == "Female" & survey$SiblingsAtSchool >= 5, ]
 ```
-##Question #2
-##Before running data.frame(), you were asked to check that all six vectors had the same length. Why is this check necessary specifically for survey data like this, where every column represents an answer from the SAME 20 respondents?
+Question #2
 
-##the data.frame() needs every column to have the same length. And Each row is one respondent's answers, so a missing or noo extra value would cause to misalign . R might result to error or recycle the values, Checking the lengths has the  importance for the same 20 people.
+Before running data.frame(), you were asked to check that all six vectors had the same length. Why is this check necessary specifically for survey data like this, where every column represents an answer from the SAME 20 respondents?
 
-##Question #3
-##Sex, FathersOccupation, and TypesOfHouses are nominal categories. What do I mean by that? Numbers are only labels from the legend. While the PersonsAtHome and SiblingsAtSchool are real counts. For example average Sex is misleadidng beccause a mean of 1.85 doesn't describe anyone. 
+the data.frame() needs every column to have the same length. And Each row is one respondent's answers, so a missing or noo extra value would cause to misalign . R might result to error or recycle the values, Checking the lengths has the  importance for the same 20 people.
 
-##Question #4
+Question #3
+
+Sex, FathersOccupation, and TypesOfHouses are nominal categories. What do I mean by that? Numbers are only labels from the legend. While the PersonsAtHome and SiblingsAtSchool are real counts. For example average Sex is misleadidng beccause a mean of 1.85 doesn't describe anyone. 
+
+Question #4
 
 ```{r}
 subset (survey_raw, Sex == 1)
 ```
-##the output only shows 1s of the Sex Column. Some ithout  the legend could read these rank, score, or the "first" rather than the Male. It shows that coded data is unreadable until it is labeled.
-##Question #5
+the output only shows 1s of the Sex Column. Some ithout  the legend could read these rank, score, or the "first" rather than the Male. It shows that coded data is unreadable until it is labeled.
+
+Question #5
 ```{r}
 nrow(subset(survey_raw, Sex == 1))
 sum(survey_raw$Sex == 1)
 ```
-##Question #6 
-##
+Question #6 
 
 ```{r}
 summary(survey_raw)
 ```
-##summary() only looks at how each column is stored. Sex and TypesOfHouse are stored as numbers, so R treats them like quantities and prints a min, mean, and max. R can't tell the 1,2,3 are labels that came from the legend. Meaning it exisst only in the person reading the data. Storing data as numbers is deifferent from what the numbers mean. Converting to a factor tells R that the values are categories. After that, summary() shows counts per category instead.
+summary() only looks at how each column is stored. Sex and TypesOfHouse are stored as numbers, so R treats them like quantities and prints a min, mean, and max. R can't tell the 1,2,3 are labels that came from the legend. Meaning it exisst only in the person reading the data. Storing data as numbers is deifferent from what the numbers mean. Converting to a factor tells R that the values are categories. After that, summary() shows counts per category instead.
 
-##Question #7
-##The mean of PersonAtHome is meaningful. It is a real count, so the average tells you how many people typically live in a respondent's home. The mean of Sex is not meaningful. It comes out around 1.85, but that number describes nobody, because 1 and 2 are labels for Male and Female with with no quantity or order behind them.l
+Question #7
+
+The mean of PersonAtHome is meaningful. It is a real count, so the average tells you how many people typically live in a respondent's home. The mean of Sex is not meaningful. It comes out around 1.85, but that number describes nobody, because 1 and 2 are labels for Male and Female with with no quantity or order behind them.l

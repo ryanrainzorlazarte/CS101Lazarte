@@ -359,14 +359,16 @@ display: none;
 
 <div id="part-a---creating-data-frames" class="section level2">
 <h2>Part A - Creating Data Frames</h2>
-<p>##Question #1</p>
+<p>Question #1</p>
 <pre class="r"><code>Respondents &lt;- c(1:20)
 Sex &lt;- c(2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,1,2)
 FathersOccupation &lt;- c(1,3,3,3,1,2,3,1,1,1,3,2,1,3,3,1,3,1,2,1)
 PersonsAtHome &lt;- c(5,7,3,8,5,9,6,7,8,4,7,5,4,7,8,8,3,11,7,6)
 SiblingsAtSchool &lt;- c(6,4,4,1,2,1,5,3,1,2,3,2,5,5,2,1,2,5,3,2)
 TypesOfHouses &lt;- c(1,2,3,1,1,3,3,1,2,3,2,3,2,2,3,3,3,3,3,2)</code></pre>
-<p>##a.</p>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
 <pre class="r"><code>c(length(Respondents),length(Sex),length(FathersOccupation),length(PersonsAtHome),length(SiblingsAtSchool),length(TypesOfHouses))</code></pre>
 <pre><code>## [1] 20 20 20 20 20 20</code></pre>
 <pre class="r"><code>survey &lt;- data.frame(Respondents, Sex, FathersOccupation, PersonsAtHome, SiblingsAtSchool, TypesOfHouses)
@@ -413,8 +415,10 @@ survey</code></pre>
 ## 18             3
 ## 19             3
 ## 20             2</code></pre>
-<p>##a. Describe the data. Get the structure or the summary of the
-data.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Describe the data. Get the structure or the summary of the
+data.</li>
+</ol>
 <pre class="r"><code>str(survey)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    20 obs. of  6 variables:
 ##  $ Respondents      : int  1 2 3 4 5 6 7 8 9 10 ...
@@ -438,22 +442,29 @@ data.</p>
 ##  Mean   :2.95     Mean   :2.3  
 ##  3rd Qu.:4.25     3rd Qu.:3.0  
 ##  Max.   :6.00     Max.   :3.0</code></pre>
-<p>##b. Check for the dimensions. How many rows and columns?</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Check for the dimensions. How many rows and columns?</li>
+</ol>
 <pre class="r"><code>dim(survey)</code></pre>
 <pre><code>## [1] 20  6</code></pre>
-<p>##d. Get the mean for all columns.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Get the mean for all columns.</li>
+</ol>
 <pre class="r"><code>colMeans(survey)</code></pre>
 <pre><code>##       Respondents               Sex FathersOccupation     PersonsAtHome 
 ##             10.50              1.85              1.95              6.40 
 ##  SiblingsAtSchool     TypesOfHouses 
 ##              2.95              2.30</code></pre>
-<p>##c. Create factors for Sex, Father’s Occupation and Tyeps of
-Houses</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Create factors for Sex, Father’s Occupation and Tyeps of Houses</li>
+</ol>
 <pre class="r"><code>survey$Sex &lt;- factor(survey$Sex, levels = c(1,2), labels = c(&quot;Male&quot;,&quot;Female&quot;))
 survey$FathersOccupation &lt;- factor(survey$FathersOccupation, levels = c(1,2,3), labels = c(&quot;Farmer&quot;, &quot;Driver&quot;, &quot;Others&quot;))
 survey$TypesOfHouses &lt;- factor(survey$TypesOfHouses, levels = c(1,2,3), labels = c(&quot;Wood&quot;, &quot;Semi-Concrete&quot;, &quot;Concrete&quot;))</code></pre>
-<p>##e. Extract the 1st five rows and then all the columns using
-subsetting functions. What is the Output?</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Extract the 1st five rows and then all the columns using subsetting
+functions. What is the Output?</li>
+</ol>
 <pre class="r"><code>survey[1:5, ]</code></pre>
 <pre><code>##   Respondents    Sex FathersOccupation PersonsAtHome SiblingsAtSchool
 ## 1           1 Female            Farmer             5                6
@@ -467,8 +478,10 @@ subsetting functions. What is the Output?</p>
 ## 3      Concrete
 ## 4          Wood
 ## 5          Wood</code></pre>
-<p>##f. Select the variable types of houses then store the vector that
-results as types_houses.</p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>Select the variable types of houses then store the vector that
+results as types_houses.</li>
+</ol>
 <pre class="r"><code>types_houses &lt;-survey$TypesOfHouses
 types_houses</code></pre>
 <pre><code>##  [1] Wood          Semi-Concrete Concrete      Wood          Wood         
@@ -476,8 +489,10 @@ types_houses</code></pre>
 ## [11] Semi-Concrete Concrete      Semi-Concrete Semi-Concrete Concrete     
 ## [16] Concrete      Concrete      Concrete      Concrete      Semi-Concrete
 ## Levels: Wood Semi-Concrete Concrete</code></pre>
-<p>##g. Select only all Males respondent that their father occupation
-was farmer.</p>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>Select only all Males respondent that their father occupation was
+farmer.</li>
+</ol>
 <pre class="r"><code>survey_raw &lt;- data.frame(Respondents, Sex, FathersOccupation, PersonsAtHome, SiblingsAtSchool, TypesOfHouses)
 str(survey_raw)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    20 obs. of  6 variables:
@@ -491,7 +506,9 @@ str(survey_raw)</code></pre>
 <pre><code>## [1] Respondents       Sex               FathersOccupation PersonsAtHome    
 ## [5] SiblingsAtSchool  TypesOfHouses    
 ## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
-<p>##h. Female respondents with 5 or more siblings in school.</p>
+<ol start="8" style="list-style-type: lower-alpha">
+<li>Female respondents with 5 or more siblings in school.</li>
+</ol>
 <pre class="r"><code>survey[survey$Sex == &quot;Female&quot; &amp; survey$SiblingsAtSchool &gt;= 5, ]</code></pre>
 <pre><code>##    Respondents    Sex FathersOccupation PersonsAtHome SiblingsAtSchool
 ## 1            1 Female            Farmer             5                6
@@ -505,20 +522,22 @@ str(survey_raw)</code></pre>
 ## 13 Semi-Concrete
 ## 14 Semi-Concrete
 ## 18      Concrete</code></pre>
-<p>##Question #2 ##Before running data.frame(), you were asked to check
-that all six vectors had the same length. Why is this check necessary
-specifically for survey data like this, where every column represents an
-answer from the SAME 20 respondents?</p>
-<p>##the data.frame() needs every column to have the same length. And
-Each row is one respondent’s answers, so a missing or noo extra value
-would cause to misalign . R might result to error or recycle the values,
+<p>Question #2</p>
+<p>Before running data.frame(), you were asked to check that all six
+vectors had the same length. Why is this check necessary specifically
+for survey data like this, where every column represents an answer from
+the SAME 20 respondents?</p>
+<p>the data.frame() needs every column to have the same length. And Each
+row is one respondent’s answers, so a missing or noo extra value would
+cause to misalign . R might result to error or recycle the values,
 Checking the lengths has the importance for the same 20 people.</p>
-<p>##Question #3 ##Sex, FathersOccupation, and TypesOfHouses are nominal
-categories. What do I mean by that? Numbers are only labels from the
-legend. While the PersonsAtHome and SiblingsAtSchool are real counts.
-For example average Sex is misleadidng beccause a mean of 1.85 doesn’t
-describe anyone.</p>
-<p>##Question #4</p>
+<p>Question #3</p>
+<p>Sex, FathersOccupation, and TypesOfHouses are nominal categories.
+What do I mean by that? Numbers are only labels from the legend. While
+the PersonsAtHome and SiblingsAtSchool are real counts. For example
+average Sex is misleadidng beccause a mean of 1.85 doesn’t describe
+anyone.</p>
+<p>Question #4</p>
 <pre class="r"><code>subset (survey_raw, Sex == 1)</code></pre>
 <pre><code>##    Respondents Sex FathersOccupation PersonsAtHome SiblingsAtSchool
 ## 3            3   1                 3             3                4
@@ -528,15 +547,15 @@ describe anyone.</p>
 ## 3              3
 ## 11             2
 ## 19             3</code></pre>
-<p>##the output only shows 1s of the Sex Column. Some ithout the legend
+<p>the output only shows 1s of the Sex Column. Some ithout the legend
 could read these rank, score, or the “first” rather than the Male. It
-shows that coded data is unreadable until it is labeled. ##Question
-#5</p>
+shows that coded data is unreadable until it is labeled.</p>
+<p>Question #5</p>
 <pre class="r"><code>nrow(subset(survey_raw, Sex == 1))</code></pre>
 <pre><code>## [1] 3</code></pre>
 <pre class="r"><code>sum(survey_raw$Sex == 1)</code></pre>
 <pre><code>## [1] 3</code></pre>
-<p>##Question #6 ##</p>
+<p>Question #6</p>
 <pre class="r"><code>summary(survey_raw)</code></pre>
 <pre><code>##   Respondents         Sex       FathersOccupation PersonsAtHome 
 ##  Min.   : 1.00   Min.   :1.00   Min.   :1.00      Min.   : 3.0  
@@ -552,19 +571,19 @@ shows that coded data is unreadable until it is labeled. ##Question
 ##  Mean   :2.95     Mean   :2.3  
 ##  3rd Qu.:4.25     3rd Qu.:3.0  
 ##  Max.   :6.00     Max.   :3.0</code></pre>
-<p>##summary() only looks at how each column is stored. Sex and
+<p>summary() only looks at how each column is stored. Sex and
 TypesOfHouse are stored as numbers, so R treats them like quantities and
 prints a min, mean, and max. R can’t tell the 1,2,3 are labels that came
 from the legend. Meaning it exisst only in the person reading the data.
 Storing data as numbers is deifferent from what the numbers mean.
 Converting to a factor tells R that the values are categories. After
 that, summary() shows counts per category instead.</p>
-<p>##Question #7 ##The mean of PersonAtHome is meaningful. It is a real
-count, so the average tells you how many people typically live in a
-respondent’s home. The mean of Sex is not meaningful. It comes out
-around 1.85, but that number describes nobody, because 1 and 2 are
-labels for Male and Female with with no quantity or order behind
-them.l</p>
+<p>Question #7</p>
+<p>The mean of PersonAtHome is meaningful. It is a real count, so the
+average tells you how many people typically live in a respondent’s home.
+The mean of Sex is not meaningful. It comes out around 1.85, but that
+number describes nobody, because 1 and 2 are labels for Male and Female
+with with no quantity or order behind them.l</p>
 </div>
 
 
