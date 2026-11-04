@@ -1,0 +1,158 @@
+---
+title: "lazarte_CS101"
+author: "Ryan Rainzor A. Lazarte"
+date: "2026-11-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Part A - Creating Matricees
+```{r}
+m1 <- matrix(1:9, nrow = 3, ncol = 3)
+m1
+```
+```{r}
+m2 <- matrix(1:9, nrow = 3, ncol = 3, byrow=TRUE)
+m2
+```
+```{r}
+scores <- matrix(c(88, 92, 79, 95, 84, 90), nrow = 2, ncol = 3, byrow = TRUE)
+rownames(scores) <- c("Quiz1", "Quiz2")
+colnames(scores) <- c("Ana", "Ben", "Cid")
+scores
+```
+Question #1
+
+It is because of the byrow rule where the m2 is stated to be byrow pattern. While the m1 it is never stated to be by column pattern it is automatic to be bycolumn becuase that is how R works.
+
+Question #2
+
+It has a warning sign as the data length only has 8 and the slots are 9 it fills up the missing slot and it starts again to one.
+```{r}
+matrix(1:7, nrow = 3, ncol = 3)
+```
+## Part B - Subsetting  Matrices
+```{r}
+scores[1,2]
+scores[1, ]
+scores[, "Ben"]
+```
+```{r}
+scores[scores>=90]
+```
+Question #3
+
+```{r}
+class(scores[1, ])
+class(scores[, "Ben" ])
+```
+R downgrades a single row or column to a plain vector, with the names kept as vector names. Once one dimension has a length 1, a 2D matrix is no longer needed to hold the values, and a vector is simpler to work with in later calculations. This is the default drop = TRUE behavior. To  keep the matrix shape, use scores[1, , drop = FALSE]
+
+Question #4
+
+```{r}
+scores[scores >= 90]
+```
+a logical condition like scores >= 90 treats the matrix as one long vector and picks out the matching elements. The values that pass the test are scattered around the grid, so they usually don't form a full row or column, and R has no rectangular shape to keep.
+
+## Part C- Matrix Properties and Operations
+```{r}
+dim(scores)
+nrow(scores)
+ncol(scores)
+```
+```{r}
+scores_t <- t(scores)
+scores_t
+scores_dim <- dim(scores)
+scores_dim
+```
+```{r}
+a <- matrix(1:4, nrow=2)
+b <- matrix(5:8, nrow=2)
+a+b
+a*b
+```
+```{r}
+a%*%b
+```
+Question #5
+
+Because a * b multiply element a row 1 and element b row 1 while the %*% Multiply each row of the first matrix by each solumn of the second and adds up the products so every result is the whole column and whole row.
+
+Question #6
+
+```{r}
+dim(scores)
+dim(scores_t)
+```
+dim(scores) is the reversed of  dim(scores_t). Rows turn into columns and columns turn into rows. That also swapped the names.
+
+## Part D - cbind() and rbind()
+```{r}
+Dex <- c(85, 91)
+scores_v2 <- cbind(scores, Dex)
+scores_v2
+```
+```{r}
+Quiz3 <- c(80, 88, 93)
+scores_v3 <- rbind(scores, Quiz3)
+scores_v3
+```
+Question #7
+
+```{r}
+cbind(scores, c(85, 91, 100))
+```
+This gives warning or an error.
+
+Question #8
+
+Use rbind() becuase in reports like daily sales, and weekly attendance uses rows to inlut the data and for the faster and easy input of the data use rbind().
+
+## Part E - Arrays: Creating and Susetting
+```{r}
+arr <- array(1:12, dim = c(2,3,2))
+print(arr)
+```
+```{r}
+arr[1,2,2]
+arr[,,1]
+```
+Question #9
+
+```{r}
+dim(arr)
+```
+These three nimbers are the number of the rows, columns and the layers. Rows and columns describe the shape of each slice, and the third number says how many slices are stacked together.
+
+Question #10
+
+One exampple is student grades across several terms. Rows are students columns are sujects like Math, ICT, and Science. A single 2D matrix can only hold one term.
+
+## Part F - Critical Thinking Challenge 
+```{r}
+class_a <- matrix(c(85, 90, 78, 92), nrow = 2, byrow = TRUE,
+                   dimnames = list(c("S1", "S2"), c("Midterm", "Final")))
+class_b <- matrix(c(88, 84, 95, 91), nrow = 2, byrow = TRUE,
+                   dimnames = list(c("S3", "S4"), c("Midterm", "Final")))
+
+all_students <- rbind(class_a, class_b)
+print(all_students)
+```
+```{r}
+rowMeans(all_students)
+```
+Question #11
+
+I chose rbind() because the two classes contain different students but the same variables. The clue is in the names: both matrices share the same column names like Midterm and Final and have the different row names. That means the new data are new records, which go in as new rows. 
+
+Question #12
+
+Since all 5 classes share the same two columns(Midterm and Finals) but contain different students, each class adds new rows. I would stack them into one under another with the rbind(), giving it a five matrices  in one call: rbind(class1, class2, class3, class4, class5). to check the result, I would run dim() on the combined matrix
+
+## Conclusion
+
+A Matrix is a 2D structure with rows and columns, and all its valuees must be the same type. An array extends this to a 3 Dimension or more. Th epurpose of the array is to hold several matrices that stacked together, like for example, the grades for the same student across several terms. rbind() is for updating the rows of the dataset while the cbind() are useful for updating the columns. These two are important because they both require the dimensions to mamtch,m so I need to check them before combining the data. It is better to be sure.
