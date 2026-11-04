@@ -25,7 +25,7 @@ rep("A",4)
 rep(c("A","B"), each = 2)
 rep(c("A","B"),2)
 ```
-##Question #1:Set up a vector named age, consisting of 15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8.
+Question #1:Set up a vector named age, consisting of 15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8.
 
 Answer:
 
@@ -45,45 +45,48 @@ c.
 ```{r}
 new_age <- c(age, 0, age)
 ```
-##new_age is a vector of length 69: the 34 ages, then a 0, then the same 34 ages again.
+new_age is a vector of length 69: the 34 ages, then a 0, then the same 34 ages again.
 
 d.
 ```{r}
 min(age)
 max(age)
 ```
-##Question #2:
-##rep(c("A","B"), each = 2) and rep(c("A","B"), times = 2) both produce a vector of length 4, but with different element orders.
-##Explain in your own words the difference between each and times.
+Question #2:
+
+rep(c("A","B"), each = 2) and rep(c("A","B"), times = 2) both produce a vector of length 4, but with different element orders.
+
+Explain in your own words the difference between each and times.
 ```{r}
 rep(c("A","B"), each = 2)
 rep(c("A","B"), times = 2)
 ```
-##answer
+answer
 
-##In my own understanding each function repeat each element in how many times, while the times function 
+In my own understanding each function repeat each element in how many times, while the times function 
 
-##Question #3:
+Question #3:
 ```{r}
 seq(1, 20, by =2)
 seq(1, 20, length.out = 5)
 ```
-##base on the terminal output, the difference between by to the length.out is that by add the sequence and the length.out give a cappacity to the vector.
+base on the terminal output, the difference between by to the length.out is that by add the sequence and the length.out give a cappacity to the vector.
 
-##Question #4:
-##a. 
+Question #4:
+
+a. 
 ```{r}
 vec_num <- seq(20,60)
 ```
-##b. 
+b. 
 ```{r}
 mean(vec_num)
 ```
-##c.
+c.
 ```{r}
 sum(vec_num)
 ```
-##d.
+d.
 ```{r}
 length(vec_num)
 ```
@@ -101,15 +104,17 @@ grades[-c(1,4) ]
 ```{r}
 grades[grades >= 85]
 ```
-##Question 5
-## When it comes to real situation where we would need negative indexing is the time we need to eliminate unnecessary data less than the data that we needed. While when it comes to logical indexing is where we need to list just specific requirements that has the condition.
+Question #5
 
-##Question 6
+When it comes to real situation where we would need negative indexing is the time we need to eliminate unnecessary data less than the data that we needed. While when it comes to logical indexing is where we need to list just specific requirements that has the condition.
+
+Question #6
 ```{r}
 grades[10]
 ```
-##Because there is no data in arrangement 10. The capacity of the grade variable holds is only 5 and if I guess why it does not throw an error because the structure of the code itself is acceptable and only the index 10 has no value
-##Question #7:
+Because there is no data in arrangement 10. The capacity of the grade variable holds is only 5 and if I guess why it does not throw an error because the structure of the code itself is acceptable and only the index 10 has no value
+
+Question #7:
 ```{r}
 Filter(function(i) { all(i %% c(3,5,7) != 0) }, seq(100))
 ```
@@ -131,11 +136,14 @@ fruits <- c("apple", "banana", "cherry")
 append(fruits, "date")
 append(fruits, "kiwi", after = 1)
 ```
-##Question 8
-##When z is added to short, R doesn't throw an error. It repeats the code over and over until it matches the length of z.
-##Question 9
-##It works for my terminal, with no warning. 6 is multiple of three and I guess it works twice.
-##for the length 4, I observe it still gives a result but it has a warning. Only a part recycles to the end.
+Question 8
+
+When z is added to short, R doesn't throw an error. It repeats the code over and over until it matches the length of z.
+
+Question 9
+
+It works for my terminal, with no warning. 6 is multiple of three and I guess it works twice.for the length 4, I observe it still gives a result but it has a warning. Only a part recycles to the end.
+
 ## Part D -- Lists: Creating and Subsetting
 ```{r}
 student <- list(name = "Maria Santos", age = 20, grades = c(88, 92, 79), is_enrolled = TRUE)
@@ -152,10 +160,14 @@ student$name
 student[["grades"]][2]
 student$grades[2]
 ```
-##Question #10
-##student["grades"] will write the entire elements on that length. while the [["grades"]] will only select a specific element.
-##Question #11
-##A vector can only hold a one type, so every element is the samekind of thing and the brackets is enough to pick them out.
+Question #10
+
+student["grades"] will write the entire elements on that length. while the [["grades"]] will only select a specific element.
+
+Question #11
+
+A vector can only hold a one type, so every element is the samekind of thing and the brackets is enough to pick them out.
+
 ## Part E--Critical Thinking Challenge
 ```{r}
 inventory <- list(item = c("Notebook", "Pen", "Eraser"), price = c(24.50, 10.00, 5.00), in_stock = c(TRUE, TRUE, FALSE))
@@ -166,13 +178,13 @@ inventory$item <- append(inventory$item, "Ruler")
 inventory$price <- append(inventory$price, 15.00)
 inventory$in_stock <- append(inventory$in_stock, TRUE)
 ```
-##Question #12
+Question #12
 
-##"inventory$in_stock" extracts the logical vector c(TRUE, TRUE, FALSE). While the "inventory$item" extracts the character vector c("Notebook","Pen","Eraser").Both vectors have the same length and the "[]" with the logical vector keeps the elements where the value is TRUE.
+"inventory$in_stock" extracts the logical vector c(TRUE, TRUE, FALSE). While the "inventory$item" extracts the character vector c("Notebook","Pen","Eraser").Both vectors have the same length and the "[]" with the logical vector keeps the elements where the value is TRUE.
 
-##Question #13
+Question #13
 
-##It will be risky because nothing in R links them. They only match is easy to break as the dataset grows or gets reordered. It can cause misalignment.
+It will be risky because nothing in R links them. They only match is easy to break as the dataset grows or gets reordered. It can cause misalignment.
 
 ## Conclusion
-##Vectors hold many values of a single type, ehile it lists can holf elements of different types and lengths, including other vectors and lists. Vectors use [] for indexing, while lists use [] to get smaller list and [[]] or $ is to extract the element itself.
+Vectors hold many values of a single type, ehile it lists can holf elements of different types and lengths, including other vectors and lists. Vectors use [] for indexing, while lists use [] to get smaller list and [[]] or $ is to extract the element itself.
