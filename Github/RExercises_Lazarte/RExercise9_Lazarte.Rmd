@@ -8,3 +8,102 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Part A - Creating Data Frames
+
+Question #1
+
+a. The table below shows the data about shoe size and height. Create a data frame. Save it as shoesize.csv
+```{r}
+shoesize <- data.frame(
+  Shoe_size = c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5,13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0, 13.0),
+  Height = c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.5, 67.0, 71.0, 71.0,77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0, 72.0, 70.0, 69.0, 70.0),
+  Gender = c("F","F","F","F","M","F","F","F","M","F","M","F","M","M","M","M","F","F","M","F","F","M","M","F","M","M","M","M")
+)
+write.csv(shoesize, "shoesize.csv", row.names = FALSE)
+
+```
+b. Then try to import the saved csv into the R environment. Display the last 5 rows.
+```{r}
+shoes <- read.csv("shoesize.csv")
+tail(shoes, 5)
+```
+c. Describe the data by showing the structures and its content. 
+```{r}
+str(shoes)
+summary(shoes)
+head(shoes)
+```
+d. Inspect its dimensions. How many rows? How about columns?
+```{r}
+dim(shoes)
+nrow(shoes)
+ncol(shoes)
+```
+e. Inspect by using summary(). What is the difference of the summary() from str() function?
+```{r}
+summary(shoes)
+str(shoes)
+```
+Summary presents the data of mean, min, max, the length, and the median of the data which is quite similar to a statistical analysis. On the other hand, str() function provides numerical data for the matrix.
+
+f. Create a subset by males and females with their corresponding shoe size and height. What its result? Show the R scripts.
+
+```{r}
+males   <- shoes[shoes$Gender == "M",c("Shoe_size", "Height")]
+females <- shoes[shoes$Gender == "F", c("Shoe_size", "Height")]
+males
+females
+```
+g. Find the mean of shoe size and height of the respondents. Write the R scripts and its result.
+
+```{r}
+mean(shoes$Shoe_size, na.rm = TRUE)
+mean(shoes$Height, na.rm = TRUE)
+```
+h. Is there a relationship between shoe size and height? Why?
+```{r}
+cor(shoes$Shoe_size, shoes$Height)
+plot(shoes$Shoe_size, shoes$Height)
+```
+Question #2:
+```{r}
+shoes$Gender <- factor(shoes$Gender)
+levels(shoes$Gender)
+```
+Question #3
+
+Knitting always starts from the .Rmd file’s own folder, so a relative path like read.csv("shoes.csv") works on anyone’s computer as long as the files sit together. If it depended on your console’s working directory (or a hard-coded path like C:/Users/Ryan/...), it would break on another machine because that folder wouldn’t exist or would be different. This makes the document reproducible without anyone editing paths.
+
+Question #4
+
+Gender will most likely show as chr (character), not a factor. That’s expected, since R doesn’t convert text to factors automatically anymore, which is why Q2 asks you to do it yourself.If Shoe_Size were imported as chr because of a stray value like "N/A" or "9.5 ", the mean() will return NA with warning, and arithmetic gives "non-numeric argument" errors. While, the cor() fails, and plots treat values as categories, sorted into alphabetically.
+
+Question #5
+
+head() only shows the first rows, so it can miss problems at the end of the file: extra footer or summary lines, trailing blank or junk rows, a truncated import, or a stray non-numeric value in the last rows. tail() shows the end, so checking both confirms the whole file came in cleanly, with the right number of rows.
+
+Question #6
+a.
+```{r}
+cor(shoes$Shoe_size, shoes$Height)
+```
+b.
+```{r}
+shoes[shoes$Shoe_size >= 11, ]
+```
+
+Question #7
+```{r}
+mean(males$Height);  mean(females$Height)
+mean(males$Shoe_size); mean(females$Shoe_size)
+```
+I see that the pattern is Males have higher mean height and a larger mean shoe size than females.
+
+```{r}
+cor(males$Shoe_size, males$Height)
+cor(females$Shoe_size, females$Height)
+```
+With only 28 observations, each group is small amount, so these estimates are not really credible. Gender is an important factor to account for separately, and that you can't claim the relationship holds within groups from the pooled data alone.
+
+
+
