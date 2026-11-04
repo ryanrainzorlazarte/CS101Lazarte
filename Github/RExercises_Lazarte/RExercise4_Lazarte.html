@@ -359,30 +359,42 @@ display: none;
 
 <div id="part-a---creating-vectors-and-list" class="section level2">
 <h2>Part A - Creating Vectors and List:</h2>
-<p>##Question #1: ##a. Create a vector for the worker’s age.</p>
+<p>Question #1: a. Create a vector for the worker’s age.</p>
 <pre class="r"><code>age &lt;- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35, 24,33, 41, 53, 40, 18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26, 18)</code></pre>
-<p>##b. How many data points?</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>How many data points?</li>
+</ol>
 <pre class="r"><code>length(age)</code></pre>
 <pre><code>## [1] 50</code></pre>
-<p>##c. Find minimum and the maximum value of worker’s age.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Find minimum and the maximum value of worker’s age.</li>
+</ol>
 <pre class="r"><code>min(age)</code></pre>
 <pre><code>## [1] 17</code></pre>
 <pre class="r"><code>max(age)</code></pre>
 <pre><code>## [1] 61</code></pre>
-<p>##d.Accesss the 13rd to the 18th elements and 33th to 35th elements
-of the worker’s Age.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Accesss the 13rd to the 18th elements and 33th to 35th elements of
+the worker’s Age.</li>
+</ol>
 <pre class="r"><code>age[c(13:18,33:35)]</code></pre>
 <pre><code>## [1] 27 22 37 34 19 20 33 41 53</code></pre>
-<p>##e. Access all but the 10th, 20th, 30th, and 40th elements are not
-included.</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Access all but the 10th, 20th, 30th, and 40th elements are not
+included.</li>
+</ol>
 <pre class="r"><code>age[-c(10,20,30,40)]</code></pre>
 <pre><code>##  [1] 34 28 22 36 27 18 52 39 42 35 31 27 22 37 34 19 20 57 50 37 46 25 17 37 43
 ## [26] 53 41 35 24 33 41 53 40 18 44 38 48 27 39 19 30 61 54 58 26 18</code></pre>
-<p>##f. Modify the 4th, 14th, 24th and 44th elements with value=0.</p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li>Modify the 4th, 14th, 24th and 44th elements with value=0.</li>
+</ol>
 <pre class="r"><code>age[c(14,24,34,44)] &lt;- 0</code></pre>
-<p>##Question #2</p>
+<p>Question #2</p>
 <pre class="r"><code>data(rivers)</code></pre>
-<p>##a.</p>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
 <pre class="r"><code>length(rivers)</code></pre>
 <pre><code>## [1] 141</code></pre>
 <pre class="r"><code>sum(rivers)</code></pre>
@@ -399,40 +411,51 @@ included.</p>
 <pre><code>## [1] 135</code></pre>
 <pre class="r"><code>max(rivers)</code></pre>
 <pre><code>## [1] 3710</code></pre>
-<p>##b.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
 <pre class="r"><code>river_summary &lt;- c(length=length(rivers), sum=sum(rivers), mean=mean(rivers), median=median(rivers), variance=var(rivers), standard_deviation=sd(rivers),minimum=min(rivers),maximum=max(rivers))</code></pre>
-<p>##Question #3:</p>
+<p>Question #3:</p>
 <pre class="r"><code>power_ranking &lt;- c(1:25)
 celebrity_name &lt;- c(&quot;Tom Cruise&quot;, &quot;Rolling Stones&quot;, &quot;Oprah Winfrey&quot;, &quot;U2&quot;, &quot;Tiger Woods&quot;, &quot;Steven Spielberg&quot;, &quot;Howard Stern&quot;, &quot;50 Cent&quot;, &quot;Cast of the Sopranos&quot;, &quot;Dan Brown&quot;, &quot;Bruce Springsteen&quot;, &quot;Donald Trump&quot;, &quot;Muhammad Ali&quot;, &quot;Pual McCartney&quot;, &quot;George Lucas&quot;, &quot;Elton John&quot;, &quot;David Letterman&quot;, &quot;Phil Mickelson&quot;, &quot;J.K Rowling&quot;, &quot;Brad Pitt&quot;, &quot;Peter Jackson&quot;, &quot;Dr. Phil McGraw&quot;, &quot;Jay Lenon&quot;, &quot;Celine Dion&quot;, &quot;Kobe Bryant&quot;)
 pay &lt;- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)</code></pre>
-<p>#Forbes Ranking ##a. Modify the power ranking and pay of J.K.
-Rowling. Change power ranking to 15 and pay to 90.</p>
+</div>
+<div id="forbes-ranking" class="section level2">
+<h2>Forbes Ranking</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Modify the power ranking and pay of J.K. Rowling. Change power
+ranking to 15 and pay to 90.</li>
+</ol>
 <pre class="r"><code>power_ranking[19] &lt;-15
 pay[19] &lt;-90</code></pre>
-<p>##Question #4</p>
+<p>Question #4</p>
 <pre class="r"><code>vegetables &lt;- c(&quot;Carrots&quot;, &quot;Potato&quot;, &quot;Cabbage&quot;, &quot;Garlic&quot;, &quot;Tomato&quot;, &quot;Ginger&quot;, &quot;Onion&quot;, &quot;String Beans&quot;, &quot;Pumpkin&quot;, &quot;Cucumber&quot;)
 vegetables</code></pre>
 <pre><code>##  [1] &quot;Carrots&quot;      &quot;Potato&quot;       &quot;Cabbage&quot;      &quot;Garlic&quot;       &quot;Tomato&quot;      
 ##  [6] &quot;Ginger&quot;       &quot;Onion&quot;        &quot;String Beans&quot; &quot;Pumpkin&quot;      &quot;Cucumber&quot;</code></pre>
-<p>##a.</p>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
 <pre class="r"><code>vegetables &lt;- append(vegetables, c(&quot;Okra&quot;, &quot;Chili&quot;))</code></pre>
-<p>##b.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
 <pre class="r"><code>length(vegetables)</code></pre>
 <pre><code>## [1] 12</code></pre>
-<p>##c.</p>
-<pre class="r"><code>vegetables &lt;- append(vegetables, c(&quot;Broccoli&quot;, &quot;Spinach&quot;, &quot;Corn&quot;, &quot;Bell Pepper&quot;, &quot;Eggplant&quot;, after = 5))
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>vegetables &lt;- append(vegetables, c(&quot;Broccoli&quot;, &quot;Spinach&quot;, &quot;Corn&quot;, &quot;Bell Pepper&quot;), after =5 )
 vegetables</code></pre>
-<pre><code>##                                                                            
-##      &quot;Carrots&quot;       &quot;Potato&quot;      &quot;Cabbage&quot;       &quot;Garlic&quot;       &quot;Tomato&quot; 
-##                                                                            
-##       &quot;Ginger&quot;        &quot;Onion&quot; &quot;String Beans&quot;      &quot;Pumpkin&quot;     &quot;Cucumber&quot; 
-##                                                                            
-##         &quot;Okra&quot;        &quot;Chili&quot;     &quot;Broccoli&quot;      &quot;Spinach&quot;         &quot;Corn&quot; 
-##                                        after 
-##  &quot;Bell Pepper&quot;     &quot;Eggplant&quot;            &quot;5&quot;</code></pre>
-<p>##d. </p>
+<pre><code>##  [1] &quot;Carrots&quot;      &quot;Potato&quot;       &quot;Cabbage&quot;      &quot;Garlic&quot;       &quot;Tomato&quot;      
+##  [6] &quot;Broccoli&quot;     &quot;Spinach&quot;      &quot;Corn&quot;         &quot;Bell Pepper&quot;  &quot;Ginger&quot;      
+## [11] &quot;Onion&quot;        &quot;String Beans&quot; &quot;Pumpkin&quot;      &quot;Cucumber&quot;     &quot;Okra&quot;        
+## [16] &quot;Chili&quot;</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
 <pre class="r"><code>length(vegetables)</code></pre>
-<pre><code>## [1] 18</code></pre>
+<pre><code>## [1] 16</code></pre>
 </div>
 
 
