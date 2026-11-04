@@ -8,3 +8,113 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Part A - Creating Data Frames
+
+a.
+
+```{r}
+scores <- c(Ana = 78, Ben = 92, Cid = 85, Dex = 92, Eli = 67, Fay = 88, Gio = 74)
+scores
+```
+b.
+```{r}
+sort(scores)                      
+sort(scores, decreasing = TRUE)  
+```
+c.
+```{r}
+print(sort(scores))
+```
+d.
+```{r}
+subjects <- c("Science", "Math","English", "Filipino", "PE")
+incomplete <- c(85, NA, 90, 70, NA, 95)
+```
+e.
+```{r}
+sort(subjects)
+```
+f.
+```{r}
+
+sort(incomplete)                  
+sort(incomplete, na.last = TRUE)
+```
+
+Question #2:
+
+Yes, the names stayed with their original values. This matters because a score without its owner is meaningless. If you sorted exam scores and the names stayed in their original positions, the top score of 92 would be labeled with whoever happened to be first, so you would name the wrong top performer.
+
+Question #3:
+
+sort() drops NAs without any warning, so the output looks complete when it isn’t. If you reported “the lowest score” from sort(incomplete)[1], you’d say 70. The students with missing scores might have scored lower, or the data might be incomplete in a way that changes your conclusion. You should check for NAs first, for example with sum(is.na(x)).
+
+Question #4
+```{r}
+order(scores)
+sort(scores)
+```
+```{r}
+scores[order(scores)]
+```
+Yes, it gives the same values and names as sort(scores). While the order() gives the position in sorted order and the indexing scores with those positions pulls the values out in that order.
+
+Question 5
+```{r}
+students <- data.frame(
+  name    = c("Ana", "Ben", "Cid", "Dex", "Eli", "Fay", "Gio"),
+  score   = c(78, 92, 85, 92, 67, 88, 74),
+  section = c("A", "B", "A", "B", "A","B", "A")
+)
+students
+```
+a.
+```{r}
+students[order(students$score), ]
+```
+b.
+```{r}
+students[order(-students$score), ]
+```
+Question #6
+
+order(scores) returns 5 7 1 3 6 2 4. These are positions, not scores. The first number, 5, means that the smallest score is in position 5 (Eli). On its own it’s useless because it tells you where things are but doesn’t show any values. You need to use it as an index, like scores[order(scores)], to rearrange something.
+
+Question #7
+
+sort(students) can’t work because sort() orders a single vector’s values independently. A data frame has several columns, and sorting each one separately would break the rows apart, so Ana’s name could end up next to Ben’s score. “Sorting a table” really means reordering rows. order() works because it gives one set of row positions, and you apply those same positions to every column at once (students[order(...), ]), so each row stays intact.
+
+Question #8
+```{r}
+rank(scores)
+cbind(scores, rank = rank(scores))
+```
+a.
+
+Ben and Dex each received a rank of 6.5. By default, rank() uses ties.method = "average".
+
+b.
+
+They share positions 6 and 7
+
+Question #8
+
+a.
+```{r}
+sales <- data.frame(
+  employee   = c("Rey", "Sam", "Tin", "Uma", "Val"),
+  units_sold = c(120, 145, 145, 98, 130)
+)
+
+sales$rank <- rank(-sales$units_sold)
+sales
+```
+b. 
+```{r}
+sales[order(-sales$units_sold), ]
+```
+Question #9
+
+It is not enough, order() couldn't do bothjobs. It does only tells you the positions neede to arrange the data, that it can sort the table but it can't give each employee a standing.
+
+rank() gives each item its own place in the ordering and handles ties, such as Sam and Tin both getting 1.5. With the order() alone, tied sellers would just appear one after another, as if one were ahead of the other, and no rank would be recorded.
