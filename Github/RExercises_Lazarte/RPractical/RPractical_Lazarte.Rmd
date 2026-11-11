@@ -1,0 +1,212 @@
+---
+title: "R Programming Practical Examination"
+author: "Ryan Rainzor A. Lazarte"
+date: "2026-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Part A: Basic Operations
+A1 Create v as the sequence 5, 10, 15, ...., 50 using seq(). Print its length, sum and mean.
+```{r}
+v <- c(5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+seq(v)
+length(v)
+sum(v)
+mean(v)
+```
+A2 Create w that repeats the vector c(1,2,3) four times, and z that repeats each element of c(1, 2, 3) four times. Print both.
+```{r}
+w <- rep(c(1,2,3), times = 4)
+z <- rep(c(1, 2, 3), each = 4)
+w
+z
+```
+A3 Compute and print: the remainder of 17 divided by 5, the integer division of 17 by 5, 2 to the power of 10, the square root of 144, pi rounded to 3 decimals.
+```{r}
+remainder <- 17 %% 5
+remainder
+division <- 17 /2
+division
+exponent <- 2^10
+exponent
+sqrt(144)
+round(pi,3)
+```
+A4. Given a <- c(2, 4, 6, 8) and b <- c(1, 3, 5, 7), print a+b, a * b, logical comparison a > b, and the dot product sum(a*b)
+```{r}
+a <- c(2, 4, 6, 8)
+b <- c(1, 3, 5, 7)
+a + b
+a * b
+a > b
+sum(a*b)
+```
+A5 Use paste() to produce "Student-1" "Student-2" "Student-3". Then identify the datatype of 42, 42L, "42", 41i, and TRUE. What are its output?
+```{r}
+paste("Student", 1:3, sep = "-")
+class(42)
+class(42L)
+class("42")
+class(41i)
+class(TRUE)
+```
+## Part B : Data Frames and Conditional Statements
+
+B1
+```{r}
+students <- data.frame(
+  id = 1:8,
+  name = c("Alice","Bruno","Chen","Dana","Elif","Farid","Grace","Hiro"),
+  sex = c("F","M","M","F","F","M","F","M"),
+  section = c("A","B","A","C","B","C","A","B"),
+  midterm = c(78,85,92,67,74,88,95,59),
+  final = c(82,79,96,71,80,91,93,65),
+  attendance = c(95,88,100,72,90,85,98,60),
+  stringsAsFactors = FALSE
+)
+```
+B2. 
+```{r}
+str(students)
+dim(students)
+names(students)
+summary(students)
+```
+B3. 
+```{r}
+students$average <- (students$midterm + students$final) /2
+```
+B4. 
+```{r}
+students$passed <- students$average >= 70 & students$attendance >= 75
+```
+B5. 
+```{r}
+students$standing <- ifelse(students$average >= 90, "Honors",
+                     ifelse(students$average >= 75, "Good", "Needs Support"))
+```
+B6.
+```{r}
+classify <- function(score) {
+  if (score >= 85) {
+    "Distinction"
+  } else if (score >= 70) {
+    "Merit"
+  } else if (score >= 50) {
+    "Pass"
+  } else {
+    "Fail"
+  }
+}
+result <- sapply(c(90, 73, 55, 40), classify)
+print(result)   # "Distinction" "Merit" "Pass" "Fail"
+```
+## Part C: rbind() and cbind()
+C1.
+```{r}
+new_students <- data.frame(
+  id = c(9, 10),
+  name = c("Ines", "Jamal"),
+  sex = c("F", "M"),
+  section = c("C", "A"),
+  midterm = c(81, 70),
+  final = c(84, 68),
+  attendance = c(92, 80),
+  stringsAsFactors = FALSE
+)
+
+new_students$average <- (new_students$midterm + new_students$final) / 2
+
+new_students$passed <- new_students$average >= 70 & new_students$attendance >= 75
+
+new_students$standing <- ifelse(new_students$average >= 90, "Honors",ifelse(new_students$average >= 75, "Good", "Needs Support"))
+
+students_all <- rbind(students, new_students)
+```
+C2.
+```{r}
+quiz <- c(8, 7, 10, 6, 7, 9, 10, 5, 8, 6)
+cbind(students_all)
+class(students_all)
+```
+C3. 
+```{r}
+m <- cbind(midterm = students_all$midterm, final = students_all$final)
+m <- rbind(m, mean = colMeans(m))
+print(m)
+```
+C4. 
+```{r}
+# rbind() on the data frames requires matching column names. If they differ,it stops with the error "numbers of columns of arguments do not match", because it can't tell which columns should line up.
+tryCatch(rbind(students, bad), error = function(e){message("rbind failed: ", conditionMessage(e)); NULL})
+```
+## Part D: Subsetting
+
+D1.
+```{r}
+students_all$name
+students_all[["name"]]
+students_all[, "name"]
+```
+D2. 
+```{r}
+students_all[2:5, c("name", "midterm", "final")]
+```
+D3.
+```{r}
+students_all[students_all$attendance >90, ]
+```
+D4.
+```{r}
+subset(students_all, sex == "F" & section %in% c("A", "C") & final >= 75, select = c(name, section, final))
+
+```
+D5. 
+```{r}
+students_all$name[which.max(students_all$average)]
+students_all$name[which.min(students_all$average)]
+```
+D6.
+```{r}
+sorted <- students_all[order(students_all$average, decreasing = TRUE), ]
+head(sorted, 3)
+```
+## Part E : Basic Factors
+
+E1
+```{r}
+students_all$section <- factor(students_all$section)
+students_all$sex <- factor(students_all$sex)
+levels(students_all$section)  
+levels(students_all$sex)   
+```
+E2
+```{r}
+table(students_all$sex)
+table(students_all$section)
+table(students_all$sex, students_all$section)
+```
+E3
+```{r}
+as.integer(students_all$sex)
+# Each integer is the index of the factor level: 1 = Female, 2 = Male categories. Factors store values internally as integer codes, with the levels as labels for those codes.
+```
+E4
+```{r}
+students_all$sex_label <- factor(students_all$sex, levels = c("F", "M"),labels = c("Female", "Male"))
+
+levels(students_all$sex_label)
+```
+E5
+```{r}
+summary(students_all$sex_label)
+
+mean(students_all$average[students_all$sex_label == "Female"])
+
+mean(students_all$average[students_all$sex_label == "Male"])
+```
+
+
