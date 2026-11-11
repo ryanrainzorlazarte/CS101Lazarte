@@ -2,7 +2,7 @@
 title: "R Programming Practical Examination"
 author: "Ryan Rainzor A. Lazarte"
 date: "2026-11-11"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
