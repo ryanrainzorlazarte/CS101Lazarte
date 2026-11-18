@@ -2,7 +2,9 @@
 title: "RPractical#2"
 author: "Ryan Rainzor A. Lazarte"
 date: "2026-11-18"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
